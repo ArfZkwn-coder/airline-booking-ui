@@ -23,14 +23,14 @@ export default function FlightsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900">Search Flights</h1>
-          <p className="text-gray-600 mt-2">Find and book your perfect flight</p>
+          <p className="text-gray-600 mt-2 font-medium">Find and book your perfect flight</p>
         </div>
 
         {/* Search Form */}
@@ -40,7 +40,8 @@ export default function FlightsPage() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+          <div className="bg-red-600 text-white px-8 py-5 mb-6 font-medium flex items-center gap-3 shadow">
+            <span>i</span>
             {error}
           </div>
         )}
@@ -48,11 +49,11 @@ export default function FlightsPage() {
         {/* Results */}
         {filteredFlights.length > 0 ? (
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
               {filteredFlights.length} flights available
               {searchParams.from && ` from ${searchParams.from} to ${searchParams.to}`}
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {filteredFlights.map((flight) => (
                 <FlightCard
                   key={flight.id}
@@ -63,9 +64,10 @@ export default function FlightsPage() {
             </div>
           </div>
         ) : (
-          <div className="text-center py-12 bg-white rounded-lg">
-            <p className="text-gray-600 text-lg">
-              Search for flights to see available options
+          <div className="text-center py-16 bg-gray-50 border border-gray-200">
+            <p className="text-2xl font-bold text-gray-900 mb-4">Search for flights</p>
+            <p className="text-gray-600 font-medium">
+              Enter your travel details above to see available options
             </p>
           </div>
         )}

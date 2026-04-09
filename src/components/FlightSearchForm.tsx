@@ -24,58 +24,58 @@ export function FlightSearchForm() {
   return (
     <form
       onSubmit={handleSearch}
-      className="bg-white p-6 rounded-lg shadow-md space-y-4"
+      className="bg-white border border-gray-200 p-8 space-y-6"
     >
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
             From
           </label>
           <input
             type="text"
-            placeholder="Departure city (e.g., JFK)"
+            placeholder="Departure city"
             value={from}
             onChange={(e) => setFrom(e.target.value.toUpperCase())}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
             To
           </label>
           <input
             type="text"
-            placeholder="Arrival city (e.g., LAX)"
+            placeholder="Arrival city"
             value={to}
             onChange={(e) => setTo(e.target.value.toUpperCase())}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
             Date
           </label>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
             Passengers
           </label>
           <select
             value={passengers}
             onChange={(e) => setPassengers(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <option key={num} value={num}>
@@ -89,7 +89,7 @@ export function FlightSearchForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-2 rounded-md transition"
+        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 transition"
       >
         {isLoading ? 'Searching...' : 'Search Flights'}
       </button>

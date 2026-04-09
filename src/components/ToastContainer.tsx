@@ -17,28 +17,28 @@ export function ToastItem({ toast, onClose }: ToastProps) {
   }, [toast, onClose]);
 
   const bgColor = {
-    success: 'bg-green-500',
-    error: 'bg-red-500',
-    info: 'bg-blue-500',
-    warning: 'bg-yellow-500',
+    success: 'bg-green-600',
+    error: 'bg-red-600',
+    info: 'bg-blue-600',
+    warning: 'bg-yellow-600',
   }[toast.type];
 
-  const icon = {
+  const symbol = {
     success: '✓',
     error: '✕',
-    info: 'ℹ',
-    warning: '⚠',
+    info: 'i',
+    warning: '!',
   }[toast.type];
 
   return (
     <div
-      className={`${bgColor} text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-slide-in`}
+      className={`${bgColor} text-white px-6 py-4 flex items-center gap-3 shadow-lg`}
     >
-      <span className="text-xl font-bold">{icon}</span>
-      <p className="flex-1">{toast.message}</p>
+      <span className="text-lg font-bold">{symbol}</span>
+      <p className="flex-1 font-medium">{toast.message}</p>
       <button
         onClick={() => onClose(toast.id)}
-        className="text-white hover:opacity-80 transition text-xl font-bold"
+        className="text-white hover:opacity-80 transition font-bold"
       >
         ×
       </button>
