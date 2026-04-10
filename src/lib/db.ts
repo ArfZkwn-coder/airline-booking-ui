@@ -21,6 +21,8 @@ export interface Flight {
   price: number;
   duration: string;
   stops: number;
+  totalSeats: number;
+  bookedSeats: string[];
 }
 
 export interface Booking {
@@ -29,6 +31,7 @@ export interface Booking {
   flightId: string;
   passengers: number;
   totalPrice: number;
+  selectedSeats: string[];
   status: 'confirmed' | 'pending' | 'cancelled';
   createdAt: string;
 }

@@ -34,7 +34,7 @@ export default function RegisterPage() {
       return;
     }
 
-    await register(email, name, password);
+    await register(name, email, password);
     if (!error) {
       router.push('/flights');
     }

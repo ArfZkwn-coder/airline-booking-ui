@@ -3,6 +3,19 @@
 import { useFlightStore } from '@/store/store';
 import { useState } from 'react';
 
+// Available airports from the flight database
+const AIRPORTS = [
+  { code: 'DEL', name: 'Delhi (Indira Gandhi)' },
+  { code: 'BOM', name: 'Mumbai (Bombay)' },
+  { code: 'BLR', name: 'Bangalore (Kempegowda)' },
+  { code: 'NYC', name: 'New York (JFK)' },
+  { code: 'LAX', name: 'Los Angeles' },
+  { code: 'SFO', name: 'San Francisco' },
+  { code: 'LHR', name: 'London (Heathrow)' },
+  { code: 'CDG', name: 'Paris (Charles de Gaulle)' },
+  { code: 'AMS', name: 'Amsterdam' },
+];
+
 export function FlightSearchForm() {
   const { setSearchParams, searchFlights, isLoading } = useFlightStore();
   const [from, setFrom] = useState('');
@@ -15,6 +28,10 @@ export function FlightSearchForm() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!from || !to) {
+      alert('Please select departure and arrival airports');
+      return;
+    }
     setSearchParams({
       from,
       to,
@@ -72,25 +89,35 @@ export function FlightSearchForm() {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase">From</label>
-          <input
-            type="text"
-            placeholder="Delhi"
+          <select
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
             required
-          />
+          >
+            <option value="">Select departure</option>
+            {AIRPORTS.map((airport) => (
+              <option key={airport.code} value={airport.code}>
+                {airport.code} - {airport.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-xs font-semibold text-gray-700 mb-1 uppercase">To</label>
-          <input
-            type="text"
-            placeholder="Mumbai"
+          <select
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
             required
-          />
+          >
+            <option value="">Select arrival</option>
+            {AIRPORTS.map((airport) => (
+              <option key={airport.code} value={airport.code}>
+                {airport.code} - {airport.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

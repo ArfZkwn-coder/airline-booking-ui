@@ -59,10 +59,11 @@ interface BookingStore {
   bookings: Booking[];
   selectedFlight: Flight | null;
   passengers: number;
+  selectedSeats: string[];
   isLoading: boolean;
   error: string | null;
   setSelectedFlight: (flight: Flight | null, passengers: number) => void;
-  bookFlight: (flight: Flight, passengers: number) => Promise<void>;
+  bookFlight: (flight: Flight, passengers: number, selectedSeats?: string[]) => Promise<void>;
   fetchBookings: () => Promise<void>;
   cancelBooking: (bookingId: string) => Promise<void>;
   setError: (error: string | null) => void;
@@ -152,11 +153,12 @@ export const useBookingStore = create<BookingStore>((set, get) => ({
   bookings: [],
   selectedFlight: null,
   passengers: 1,
+  selectedSeats: [],
   isLoading: false,
   error: null,
   setSelectedFlight: (flight, passengers) =>
     set({ selectedFlight: flight, passengers }),
-  bookFlight: async (flight: Flight, passengers: number) => {
+  bookFlight: async (flight: Flight, passengers: number, selectedSeats: string[] = []) => {
     set({ isLoading: true, error: null });
     try {
       const user = useAuthStore.getState().user;
@@ -165,10 +167,10 @@ export const useBookingStore = create<BookingStore>((set, get) => ({
         return;
       }
 
-      const response = await API.bookings.createBooking(flight.id, passengers);
+      const response = await API.bookings.createBooking(flight.id, passengers, selectedSeats);
       if (response.success) {
         await get().fetchBookings();
-        set({ selectedFlight: null, passengers: 1 });
+        set({ selectedFlight: null, passengers: 1, selectedSeats: [] });
       } else {
         set({ error: response.error || 'Booking failed' });
       }

@@ -4,7 +4,25 @@
       "id": "user-1",
       "name": "John Doe",
       "email": "john@example.com",
-      "password": "password123"
+      "password": "$2b$10$o.iJkSAb4d3KW9gEEz4rqutulw47.P894WJRDe9mrGguEFlUvTQDu"
+    },
+    {
+      "id": "user-2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "$2b$10$Dl8NtMSW54tHqjor8kBw7.tzfvhhalryr4yU/bPHNYjZaR4/KwTXy"
+    },
+    {
+      "id": "user-1775822790911",
+      "name": "wwww",
+      "email": "www@gmail.com",
+      "password": "$2b$10$4cZA/Yjk1DTow8OXoY452uJjN84.cP3eDASWPeCeW2p9J9Q1aJXxq"
+    },
+    {
+      "id": "user-1775823511246",
+      "name": "racist",
+      "email": "racist@gmail.com",
+      "password": "$2b$10$.WdpIgoA5bHQN5QEAs.J5O3FJgFfsTzkz9qxVRYFvA9aBnsBKXiJm"
     }
   ],
   "flights": [
@@ -12,61 +30,262 @@
       "id": "flight-1",
       "departure": "DEL",
       "arrival": "BOM",
-      "departDate": "2024-06-15",
+      "departDate": "2026-04-10",
       "departTime": "08:00 AM",
       "arrivalTime": "10:30 AM",
       "airline": "Air India",
       "price": 4500,
       "duration": "2h 30m",
-      "stops": 0
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "1A",
+        "1B",
+        "2C",
+        "3D",
+        "5E"
+      ]
     },
     {
       "id": "flight-2",
       "departure": "DEL",
       "arrival": "BOM",
-      "departDate": "2024-06-15",
+      "departDate": "2026-04-10",
       "departTime": "02:00 PM",
       "arrivalTime": "04:45 PM",
       "airline": "Indigo",
       "price": 3800,
       "duration": "2h 45m",
-      "stops": 0
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "2A",
+        "4B",
+        "6C"
+      ]
     },
     {
       "id": "flight-3",
       "departure": "DEL",
       "arrival": "BOM",
-      "departDate": "2024-06-15",
+      "departDate": "2026-04-10",
       "departTime": "06:30 PM",
       "arrivalTime": "09:15 PM",
       "airline": "SpiceJet",
       "price": 3200,
       "duration": "2h 45m",
-      "stops": 0
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": []
     },
     {
       "id": "flight-4",
+      "departure": "BOM",
+      "arrival": "DEL",
+      "departDate": "2026-04-11",
+      "departTime": "07:00 AM",
+      "arrivalTime": "09:30 AM",
+      "airline": "Vistara",
+      "price": 5200,
+      "duration": "2h 30m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "1A",
+        "3B",
+        "5C",
+        "7D"
+      ]
+    },
+    {
+      "id": "flight-5",
+      "departure": "BOM",
+      "arrival": "BLR",
+      "departDate": "2026-04-12",
+      "departTime": "11:00 AM",
+      "arrivalTime": "01:00 PM",
+      "airline": "Air India",
+      "price": 2800,
+      "duration": "2h 00m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "2A",
+        "4C"
+      ]
+    },
+    {
+      "id": "flight-6",
       "departure": "NYC",
       "arrival": "LAX",
-      "departDate": "2024-06-20",
+      "departDate": "2026-04-15",
       "departTime": "10:00 AM",
       "arrivalTime": "01:30 PM",
       "airline": "United",
       "price": 350,
       "duration": "5h 30m",
-      "stops": 0
+      "stops": 0,
+      "totalSeats": 200,
+      "bookedSeats": [
+        "1A",
+        "2B",
+        "3C",
+        "4D",
+        "5E",
+        "6F"
+      ]
     },
     {
-      "id": "flight-5",
+      "id": "flight-7",
       "departure": "NYC",
       "arrival": "LAX",
-      "departDate": "2024-06-20",
+      "departDate": "2026-04-15",
       "departTime": "03:00 PM",
       "arrivalTime": "06:45 PM",
       "airline": "Delta",
       "price": 320,
       "duration": "5h 45m",
-      "stops": 0
+      "stops": 1,
+      "totalSeats": 200,
+      "bookedSeats": [
+        "1A",
+        "1F",
+        "2D"
+      ]
+    },
+    {
+      "id": "flight-8",
+      "departure": "NYC",
+      "arrival": "LAX",
+      "departDate": "2026-04-15",
+      "departTime": "06:00 PM",
+      "arrivalTime": "10:45 PM",
+      "airline": "American",
+      "price": 290,
+      "duration": "5h 45m",
+      "stops": 1,
+      "totalSeats": 200,
+      "bookedSeats": []
+    },
+    {
+      "id": "flight-9",
+      "departure": "LAX",
+      "arrival": "NYC",
+      "departDate": "2026-04-18",
+      "departTime": "09:00 AM",
+      "arrivalTime": "05:15 PM",
+      "airline": "Southwest",
+      "price": 280,
+      "duration": "5h 15m",
+      "stops": 0,
+      "totalSeats": 200,
+      "bookedSeats": [
+        "2A",
+        "2B",
+        "3C"
+      ]
+    },
+    {
+      "id": "flight-10",
+      "departure": "SFO",
+      "arrival": "NYC",
+      "departDate": "2026-04-13",
+      "departTime": "07:00 AM",
+      "arrivalTime": "03:45 PM",
+      "airline": "United",
+      "price": 380,
+      "duration": "5h 45m",
+      "stops": 0,
+      "totalSeats": 200,
+      "bookedSeats": [
+        "1B",
+        "1D",
+        "1F"
+      ]
+    },
+    {
+      "id": "flight-11",
+      "departure": "LHR",
+      "arrival": "CDG",
+      "departDate": "2026-04-14",
+      "departTime": "08:30 AM",
+      "arrivalTime": "10:15 AM",
+      "airline": "British Airways",
+      "price": 120,
+      "duration": "1h 15m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "2A",
+        "3B"
+      ]
+    },
+    {
+      "id": "flight-12",
+      "departure": "CDG",
+      "arrival": "AMS",
+      "departDate": "2026-04-16",
+      "departTime": "02:00 PM",
+      "arrivalTime": "03:30 PM",
+      "airline": "KLM",
+      "price": 95,
+      "duration": "1h 30m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": []
+    },
+    {
+      "id": "flight-13",
+      "departure": "DEL",
+      "arrival": "BLR",
+      "departDate": "2026-04-10",
+      "departTime": "10:30 AM",
+      "arrivalTime": "12:30 PM",
+      "airline": "GoAir",
+      "price": 2200,
+      "duration": "2h 00m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "1A",
+        "1C"
+      ]
+    },
+    {
+      "id": "flight-14",
+      "departure": "BLR",
+      "arrival": "BOM",
+      "departDate": "2026-04-11",
+      "departTime": "01:00 PM",
+      "arrivalTime": "02:45 PM",
+      "airline": "SpiceJet",
+      "price": 3100,
+      "duration": "1h 45m",
+      "stops": 0,
+      "totalSeats": 180,
+      "bookedSeats": [
+        "3D",
+        "3E"
+      ]
+    },
+    {
+      "id": "flight-15",
+      "departure": "NYC",
+      "arrival": "SFO",
+      "departDate": "2026-04-15",
+      "departTime": "08:00 AM",
+      "arrivalTime": "11:15 AM",
+      "airline": "United",
+      "price": 400,
+      "duration": "5h 15m",
+      "stops": 0,
+      "totalSeats": 200,
+      "bookedSeats": [
+        "2B",
+        "2C",
+        "2D",
+        "2E"
+      ]
     }
   ],
   "bookings": []

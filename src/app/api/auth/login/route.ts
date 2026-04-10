@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import bcrypt from 'bcryptjs';
+import { isValidEmail, ValidationErrors } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,15 +20,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = db.data.users.find(
-      (u) => u.email === email && u.password === password
-    );
+    // Validate email format
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: ValidationErrors.INVALID_EMAIL,
+        },
+        { status: 400 }
+      );
+    }
+
+    const user = db.data.users.find((u) => u.email === email);
 
     if (!user) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Invalid credentials',
+          error: ValidationErrors.INVALID_CREDENTIALS,
+        },
+        { status: 401 }
+      );
+    }
+
+    // Compare password with hashed password using bcrypt
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: ValidationErrors.INVALID_CREDENTIALS,
         },
         { status: 401 }
       );

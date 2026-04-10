@@ -125,7 +125,7 @@ export const flightAPI = {
  * Booking API calls
  */
 export const bookingAPI = {
-  createBooking: async (flightId: string, passengers: number) => {
+  createBooking: async (flightId: string, passengers: number, selectedSeats: string[] = []) => {
     return apiFetch<{
       id: string;
       bookingRef: string;
@@ -133,7 +133,7 @@ export const bookingAPI = {
       totalPrice: number;
     }>('/bookings', {
       method: 'POST',
-      body: JSON.stringify({ flightId, passengers }),
+      body: JSON.stringify({ flightId, passengers, selectedSeats }),
     });
   },
 
@@ -146,17 +146,17 @@ export const bookingAPI = {
   },
 
   cancelBooking: async (bookingId: string) => {
-    return apiFetch<{ status: string }>(`/bookings/${bookingId}/cancel`, {
-      method: 'PUT',
+    return apiFetch<{ status: string }>(`/bookings/${bookingId}`, {
+      method: 'DELETE',
     });
   },
 
   modifyBooking: async (
     bookingId: string,
-    updates: { passengers?: number; flightId?: string },
+    updates: { passengers?: number },
   ) => {
     return apiFetch(`/bookings/${bookingId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify(updates),
     });
   },

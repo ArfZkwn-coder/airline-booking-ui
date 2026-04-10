@@ -1,42 +1,36 @@
 'use client';
 
-import { useBookingStore, useAuthStore } from '@/store/store';
+import { useAuthStore } from '@/store/store';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 interface FlightCardProps {
   flight: {
     id: string;
-    flightNumber: string;
-    airline: string;
     departure: string;
     arrival: string;
-    departureTime: string;
+    departDate: string;
+    departTime: string;
     arrivalTime: string;
     duration: string;
+    airline: string;
     price: number;
-    seats: number;
-    aircraft: string;
+    stops: number;
   };
   passengers: number;
 }
 
 export function FlightCard({ flight, passengers }: FlightCardProps) {
   const { user } = useAuthStore();
-  const { bookFlight, isLoading } = useBookingStore();
   const router = useRouter();
-  const [isBooking, setIsBooking] = useState(false);
 
-  const handleBook = async () => {
+  const handleBook = () => {
     if (!user) {
       router.push('/auth/login');
       return;
     }
 
-    setIsBooking(true);
-    await bookFlight(flight, passengers);
-    setIsBooking(false);
-    router.push('/bookings');
+    // Redirect to seat selection page with flight ID and passenger count
+    router.push(`/seats/${flight.id}?passengers=${passengers}`);
   };
 
   return (
@@ -45,13 +39,13 @@ export function FlightCard({ flight, passengers }: FlightCardProps) {
         <div>
           <p className="text-xs text-gray-500 font-semibold mb-1">AIRLINE</p>
           <p className="font-semibold text-gray-900">{flight.airline}</p>
-          <p className="text-sm text-gray-600">{flight.flightNumber}</p>
+          <p className="text-sm text-gray-600">{flight.stops} {flight.stops === 0 ? 'Non-stop' : 'stop(s)'}</p>
         </div>
 
         <div className="flex items-center justify-between gap-2 col-span-2">
           <div>
             <p className="text-2xl font-bold text-gray-900">{flight.departure}</p>
-            <p className="text-sm text-gray-600">{flight.departureTime}</p>
+            <p className="text-sm text-gray-600">{flight.departTime}</p>
           </div>
           <div className="flex-1 flex flex-col items-center gap-2">
             <div className="w-full h-0.5 bg-gray-300"></div>
@@ -64,8 +58,8 @@ export function FlightCard({ flight, passengers }: FlightCardProps) {
         </div>
 
         <div>
-          <p className="text-xs text-gray-500 font-semibold mb-1">SEATS</p>
-          <p className="text-2xl font-bold text-gray-900">{flight.seats}</p>
+          <p className="text-xs text-gray-500 font-semibold mb-1">DATE</p>
+          <p className="text-lg font-bold text-gray-900">{flight.departDate}</p>
         </div>
 
         <div className="flex flex-col items-end gap-3">
@@ -76,10 +70,9 @@ export function FlightCard({ flight, passengers }: FlightCardProps) {
           </div>
           <button
             onClick={handleBook}
-            disabled={isLoading || isBooking || flight.seats < passengers}
-            className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-6 py-2 font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed w-full"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 font-semibold transition w-full"
           >
-            {isBooking ? 'Booking...' : flight.seats < passengers ? 'No Seats' : 'Book'}
+            Select Seats
           </button>
         </div>
       </div>

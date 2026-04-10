@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, User } from '@/lib/db';
+import bcrypt from 'bcryptjs';
+import { isValidEmail, isValidPassword, ValidationErrors } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,23 +20,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email format
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: ValidationErrors.INVALID_EMAIL,
+        },
+        { status: 400 }
+      );
+    }
+
+    // Validate password strength
+    if (!isValidPassword(password)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: ValidationErrors.INVALID_PASSWORD,
+        },
+        { status: 400 }
+      );
+    }
+
     // Check if user already exists
     const existingUser = db.data.users.find((u) => u.email === email);
     if (existingUser) {
       return NextResponse.json(
         {
           success: false,
-          error: 'User already exists',
+          error: ValidationErrors.EMAIL_IN_USE,
         },
         { status: 400 }
       );
     }
 
+    // Hash password with bcrypt (10 salt rounds)
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser: User = {
       id: `user-${Date.now()}`,
       name,
       email,
-      password, // In production, hash the password
+      password: hashedPassword,
     };
 
     db.data.users.push(newUser);

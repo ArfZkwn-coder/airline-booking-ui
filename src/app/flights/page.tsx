@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export default function FlightsPage() {
   const { user } = useAuthStore();
-  const { filteredFlights, error, searchParams } = useFlightStore();
+  const { flights, error, searchParams } = useFlightStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -41,20 +41,20 @@ export default function FlightsPage() {
         {/* Error Message */}
         {error && (
           <div className="bg-red-600 text-white px-8 py-5 mb-6 font-medium flex items-center gap-3 shadow">
-            <span>i</span>
+            <span>!</span>
             {error}
           </div>
         )}
 
         {/* Results */}
-        {filteredFlights.length > 0 ? (
+        {flights && flights.length > 0 ? (
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              {filteredFlights.length} flights available
+              {flights.length} flights available
               {searchParams.from && ` from ${searchParams.from} to ${searchParams.to}`}
             </h2>
             <div className="space-y-6">
-              {filteredFlights.map((flight) => (
+              {flights.map((flight) => (
                 <FlightCard
                   key={flight.id}
                   flight={flight}
