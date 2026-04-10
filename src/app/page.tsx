@@ -1,6 +1,7 @@
 'use client';
 
 import { Navbar } from '@/components/Navbar';
+import { FlightSearchForm } from '@/components/FlightSearchForm';
 import { useAuthStore } from '@/store/store';
 import Link from 'next/link';
 
@@ -12,31 +13,22 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Book Flights with Confidence
-          </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Simple, transparent flight bookings. Find the best prices and book in seconds.
-          </p>
+      <section 
+        className="relative min-h-[500px] bg-cover bg-center flex items-center justify-center py-20 px-4"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, #5b7fb5 0%, #8b9dc6 50%, #a8b8d8 100%)',
+        }}
+      >
+        {/* Decorative airplane tail */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 opacity-20">
+          <svg className="w-full h-full text-black" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M100 20 L160 80 L100 100 L40 80 Z M100 100 L110 140 L100 145 L90 140 Z" />
+          </svg>
+        </div>
 
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link
-              href="/flights"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 text-lg transition"
-            >
-              Search Flights
-            </Link>
-            {!user && (
-              <Link
-                href="/auth/login"
-                className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold px-8 py-3 text-lg transition"
-              >
-                Sign In
-              </Link>
-            )}
-          </div>
+        {/* Search Card */}
+        <div className="bg-white rounded-xl p-8 shadow-2xl w-full max-w-2xl relative z-10">
+          <FlightSearchForm />
         </div>
       </section>
 

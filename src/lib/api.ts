@@ -57,7 +57,7 @@ async function apiFetch<T>(
  */
 export const authAPI = {
   login: async (email: string, password: string) => {
-    return apiFetch<{ token: string; user: { id: string; name: string; email: string } }>(
+    return apiFetch<{ id: string; name: string; email: string }>(
       '/auth/login',
       {
         method: 'POST',
@@ -67,7 +67,7 @@ export const authAPI = {
   },
 
   register: async (name: string, email: string, password: string) => {
-    return apiFetch<{ token: string; user: { id: string; name: string; email: string } }>(
+    return apiFetch<{ id: string; name: string; email: string }>(
       '/auth/register',
       {
         method: 'POST',
@@ -94,26 +94,26 @@ export const flightAPI = {
     passengers: number,
   ) => {
     const params = new URLSearchParams({
-      departure,
-      arrival,
-      date,
+      from: departure,
+      to: arrival,
+      departDate: date,
       passengers: passengers.toString(),
     });
 
     return apiFetch<
       Array<{
         id: string;
-        flightNumber: string;
-        airline: string;
         departure: string;
         arrival: string;
-        departureTime: string;
+        departDate: string;
+        departTime: string;
         arrivalTime: string;
+        airline: string;
+        price: number;
         duration: string;
-        pricePerPassenger: number;
-        availableSeats: number;
+        stops: number;
       }>
-    >(`/flights/search?${params}`);
+    >(`/flights?${params}`);
   },
 
   getFlightDetails: async (flightId: string) => {

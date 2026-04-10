@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123"
+    }
+  ],
+  "flights": [
+    {
+      "id": "flight-1",
+      "departure": "DEL",
+      "arrival": "BOM",
+      "departDate": "2024-06-15",
+      "departTime": "08:00 AM",
+      "arrivalTime": "10:30 AM",
+      "airline": "Air India",
+      "price": 4500,
+      "duration": "2h 30m",
+      "stops": 0
+    },
+    {
+      "id": "flight-2",
+      "departure": "DEL",
+      "arrival": "BOM",
+      "departDate": "2024-06-15",
+      "departTime": "02:00 PM",
+      "arrivalTime": "04:45 PM",
+      "airline": "Indigo",
+      "price": 3800,
+      "duration": "2h 45m",
+      "stops": 0
+    },
+    {
+      "id": "flight-3",
+      "departure": "DEL",
+      "arrival": "BOM",
+      "departDate": "2024-06-15",
+      "departTime": "06:30 PM",
+      "arrivalTime": "09:15 PM",
+      "airline": "SpiceJet",
+      "price": 3200,
+      "duration": "2h 45m",
+      "stops": 0
+    },
+    {
+      "id": "flight-4",
+      "departure": "NYC",
+      "arrival": "LAX",
+      "departDate": "2024-06-20",
+      "departTime": "10:00 AM",
+      "arrivalTime": "01:30 PM",
+      "airline": "United",
+      "price": 350,
+      "duration": "5h 30m",
+      "stops": 0
+    },
+    {
+      "id": "flight-5",
+      "departure": "NYC",
+      "arrival": "LAX",
+      "departDate": "2024-06-20",
+      "departTime": "03:00 PM",
+      "arrivalTime": "06:45 PM",
+      "airline": "Delta",
+      "price": 320,
+      "duration": "5h 45m",
+      "stops": 0
+    }
+  ],
+  "bookings": []
+}
