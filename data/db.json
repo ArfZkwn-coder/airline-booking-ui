@@ -23,6 +23,12 @@
       "name": "racist",
       "email": "racist@gmail.com",
       "password": "$2b$10$.WdpIgoA5bHQN5QEAs.J5O3FJgFfsTzkz9qxVRYFvA9aBnsBKXiJm"
+    },
+    {
+      "id": "user-1775834341304",
+      "name": "sani",
+      "email": "sani@gmail.com",
+      "password": "$2b$10$8WMmPq7/EQYEWEw2Tgvkge8y02LeI1pJVtmJ0FZvdfcT8nIIFet3a"
     }
   ],
   "flights": [
